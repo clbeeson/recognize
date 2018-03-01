@@ -37,6 +37,7 @@
             // lets do some fun
             var video = document.getElementById('webcam');
             video.setAttribute("playsinline", true);
+            video.setAttribute("autoplay", true);
             var canvas = document.getElementById('canvas');
             var dollar = document.getElementById('dollar');
             var dollar_canvas = document.getElementById('dollar_canvas');
@@ -47,7 +48,7 @@
             var meh = new jsfeat.matrix_t(dollar_canvas.width, dollar_canvas.height, jsfeat.U8_t | jsfeat.U8C1_t);
             var dollarImage = dollar_ctx.getImageData(0, 0, dollar_canvas.width, dollar_canvas.height);
             jsfeat.imgproc.grayscale(dollarImage.data, dollar_canvas.width, dollar_canvas.height, meh);
-            
+
             try {
                 var attempts = 0;
                 var readyListener = function(event) {
@@ -198,7 +199,7 @@
                     }
                 };
             }
- 
+
             function demo_app(videoWidth, videoHeight) {
                 canvasWidth  = canvas.width;
                 canvasHeight = canvas.height;
@@ -244,7 +245,7 @@
                 stat.add("matching");
                 options.train_pattern();
             }
-            
+
             function tick() {
                 compatibility.requestAnimationFrame(tick);
                 stat.new_frame();
@@ -560,6 +561,6 @@
             });
         });
         </script>
-    
+
 
 <div class="dg ac"><div class="dg main a" style="-moz-user-select: none; width: 245px;"><div style="width: 6px; margin-left: -3px; height: 140px; cursor: ew-resize; position: absolute;"></div><ul style="height: auto;"><li class="cr number has-slider"><div><span class="property-name">blur_size</span><div class="c"><div><input value="5" type="text"></div><div class="slider"><div class="slider-fg" style="width: 33.3333%;"></div></div></div></div></li><li class="cr number has-slider"><div><span class="property-name">lap_thres</span><div class="c"><div><input value="30" type="text"></div><div class="slider"><div class="slider-fg" style="width: 29.2929%;"></div></div></div></div></li><li class="cr number has-slider"><div><span class="property-name">eigen_thres</span><div class="c"><div><input value="25" type="text"></div><div class="slider"><div class="slider-fg" style="width: 24.2424%;"></div></div></div></div></li><li class="cr number has-slider"><div><span class="property-name">match_threshold</span><div class="c"><div><input value="48" type="text"></div><div class="slider"><div class="slider-fg" style="width: 28.5714%;"></div></div></div></div></li><li class="cr function"><div><span class="property-name">train_pattern</span><div class="c"><div class="button"></div></div></div></li></ul><div class="close-button" style="width: 245px;">Close Controls</div></div></div></body></html>
