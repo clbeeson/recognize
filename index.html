@@ -30,10 +30,24 @@
         <script type="text/javascript" src="js/profiler.js"></script>
         <script type="text/javascript" src="js/dat.js"></script>
         <script type="text/javascript">
-
+        function initGlobals() {
+          var video = document.getElementById('webcam');
+          video.setAttribute("playsinline", true);
+          var canvas = document.getElementById('canvas');
+          var dollar = document.getElementById('dollar');
+          var dollar_canvas = document.getElementById('dollar_canvas');
+          dollar_canvas.width = dollar.width;
+          dollar_canvas.height = dollar.height;
+          var dollar_ctx = dollar_canvas.getContext('2d');
+          dollar_ctx.drawImage(dollar, 0, 0);
+          var meh = new jsfeat.matrix_t(dollar_canvas.width, dollar_canvas.height, jsfeat.U8_t | jsfeat.U8C1_t);
+          var dollarImage = dollar_ctx.getImageData(0, 0, dollar_canvas.width, dollar_canvas.height);
+          jsfeat.imgproc.grayscale(dollarImage.data, dollar_canvas.width, dollar_canvas.height, meh);
+          return [video, canvas, dollar, dollar_canvas, dollar_ctx, meh, dollarImage];
+        }
         $(window).load(function() {
             "use strict";
-
+            var someGlob=initGlobals();
             // lets do some fun
             var video = document.getElementById('webcam');
             video.setAttribute("playsinline", true);
