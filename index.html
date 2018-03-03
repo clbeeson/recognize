@@ -43,7 +43,15 @@
           var meh = new jsfeat.matrix_t(dollar_canvas.width, dollar_canvas.height, jsfeat.U8_t | jsfeat.U8C1_t);
           var dollarImage = dollar_ctx.getImageData(0, 0, dollar_canvas.width, dollar_canvas.height);
           jsfeat.imgproc.grayscale(dollarImage.data, dollar_canvas.width, dollar_canvas.height, meh);
-          return [video, canvas, dollar, dollar_canvas, dollar_ctx, meh, dollarImage];
+          return {
+            "video":video,
+            "canvas":canvas,
+            "dollar":dollar,
+            "dollar_canvas":dollar_canvas,
+            "dollar_ctx":dollar_ctx,
+            "meh":meh,
+            "dollarImage":dollarImage
+          };
         }
         $(window).load(function() {
             "use strict";
